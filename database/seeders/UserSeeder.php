@@ -14,9 +14,10 @@ class UserSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'admin@udg.mx'], // criterio único
             [
-                'name' => 'Administrador',
-                'password' => Hash::make('admin123'),
-                'role' => 3,
+                'name'       => 'Administrador',
+                'password'   => Hash::make('admin123'),
+                'role'       => 3,
+                'is_active'  => true,
             ]
         );
 
@@ -24,9 +25,21 @@ class UserSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'coordinador@udg.mx'],
             [
-                'name' => 'Coordinador',
-                'password' => Hash::make('coord123'),
-                'role' => 2,
+                'name'       => 'Coordinador',
+                'password'   => Hash::make('coord123'),
+                'role'       => 2,
+                'is_active'  => true,
+            ]
+        );
+
+        // Usuario (rol 1)
+        User::firstOrCreate(
+            ['email' => 'usuario@udg.mx'],
+            [
+                'name'       => 'Usuario',
+                'password'   => Hash::make('usuario123'),
+                'role'       => 1,
+                'is_active'  => true,
             ]
         );
     }

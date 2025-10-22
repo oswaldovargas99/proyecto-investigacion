@@ -1,0 +1,41 @@
+erDiagram
+    users ||--|| pfp_coordinadores : "1:1 user_id"
+    users ||--|| pfp_datos_generales : "1:1 user_id"
+    users ||--|| pfp_documentaciones : "1:1 usuario_id"
+    users ||--o{ pfp_solicitudes : "1:N usuario_id"
+    users ||--o{ pfp_informes : "1:N user_id"
+    users ||--o{ pfp_rubros_solicitados : "1:N user_id"
+    users ||--o{ pfp_otros_rubros : "1:N user_id"
+
+    pfp_centros_universitarios ||--o{ pfp_posgrados : "1:N centro_universitario_id"
+    pfp_niveles_academicos ||--o{ pfp_posgrados : "1:N nivel_academico_id"
+    pfp_orientaciones ||--o{ pfp_posgrados : "1:N orientacion_posgrado_id"
+    pfp_modalidades ||--o{ pfp_posgrados : "1:N modalidad_posgrado_id"
+
+    pfp_categorias_mejoras ||--o{ pfp_criterios_snp : "1:N categoria_mejora_id"
+
+    pfp_solicitudes ||--o{ pfp_solicitudes_temas : "1:N solicitud_id"
+    pfp_temas ||--o{ pfp_solicitudes_temas : "1:N tema_id"
+
+    %% Datos Generales a Catálogos
+    pfp_centros_universitarios ||--o{ pfp_datos_generales : "1:N centro_universitario_id"
+    pfp_posgrados ||--o{ pfp_datos_generales : "1:N posgrado_id (NULL)"
+    pfp_niveles_academicos ||--o{ pfp_datos_generales : "1:N nivel_academico_id"
+    pfp_orientaciones ||--o{ pfp_datos_generales : "1:N orientacion_id"
+    pfp_modalidades ||--o{ pfp_datos_generales : "1:N modalidad_id"
+
+    %% Coordinadores a Catálogos
+    pfp_centros_universitarios ||--o{ pfp_coordinadores : "1:N centro_universitario_id"
+    pfp_posgrados ||--o{ pfp_coordinadores : "1:N posgrado_id"
+    pfp_niveles_estudios ||--o{ pfp_coordinadores : "1:N nivel_estudios_id"
+    pfp_generos ||--o{ pfp_coordinadores : "1:N genero_id"
+
+    %% Convocatorias (opcional)
+    pfp_convocatorias ||--o{ pfp_solicitudes : "1:N convocatoria_id (NULL)"
+    pfp_convocatorias ||--o{ pfp_documentaciones : "1:N convocatoria_id (NULL)"
+    pfp_convocatorias ||--o{ pfp_informes : "1:N convocatoria_id (NULL)"
+
+    %% Informes a Catálogos
+    pfp_categorias_mejoras ||--o{ pfp_informes : "1:N categoria_mejora_id"
+    pfp_criterios_snp ||--o{ pfp_informes : "1:N criterio_snp_id"
+    pfp_tipos_beneficiarios ||--o{ pfp_informes : "1:N tipo_beneficiario_id"

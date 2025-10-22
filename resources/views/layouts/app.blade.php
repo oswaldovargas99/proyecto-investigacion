@@ -13,24 +13,34 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Styles -->
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        <x-banner />
 
-            <!-- Page Heading -->
-            @isset($header)
+        {{-- Layout con sidebar fijo (inserta el sidebar via @livewire('navigation-menu')) --}}
+        <div class="min-h-screen bg-gray-100 pl-72 relative">
+            {{-- Sidebar fijo (navigation-menu ahora es el sidebar) --}}
+            @livewire('navigation-menu')
+
+            {{-- Encabezado de página (opcional) --}}
+            @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
-            @endisset
+            @endif
 
-            <!-- Page Content -->
-            <main>
+            {{-- Contenido de página --}}
+            <main class="pb-4">
                 {{ $slot }}
             </main>
         </div>
+
+        @stack('modals')
+        @livewireScripts
     </body>
 </html>

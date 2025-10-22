@@ -17,7 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            // 👇 Campos nuevos
+            //$table->unsignedTinyInteger('role')->default(1); // 1=Usuario, 2=Coordinador, 3=Administrador
+            $table->boolean('is_active')->default(true);     // activo/bloqueado
+
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
 
